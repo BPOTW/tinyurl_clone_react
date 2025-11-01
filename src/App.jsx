@@ -1,7 +1,37 @@
 
+import { useState } from 'react'
 import './App.css'
+import generateUniqueId from './utils/uid_generator';
+import axios from 'axios';
 
 function App() {
+  const [originalUrl, setoriginalUrl] = useState('');
+  const [usersOwnUrlId, setusersOwnUrlId] = useState('');
+  let urlId = '';
+  const [generatedUrl, setgeneratedUrl] = useState('');
+
+  // console.log(originalUrl);
+  // console.log(usersOwnUrlId);
+
+  async function generateUrl() {
+  let urlId = usersOwnUrlId || generateUniqueId();
+  const finalUrl = `http://localhost:5173/${urlId}`;
+  setgeneratedUrl(finalUrl);
+
+  const urlData = {
+    originalLink: originalUrl,
+    generatedLinkId: urlId,
+    generatedLink: finalUrl,
+  };
+
+  try {
+    console.log(urlData);
+    const res = await axios.post("http://localhost:5050/", urlData);
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 
   return (
     <>
@@ -150,7 +180,7 @@ function App() {
             <p>Shorten a long URL</p>
           </div>
           <div id="input-div">
-            <input type="text" name="" id="" placeholder="Enter long link here" />
+            <input type="text" name="" id="" onChange={(e) => { setoriginalUrl(e.target.value) }} placeholder="Enter long link here" />
           </div>
           <br />
           <div id="bottom-div">
@@ -182,13 +212,22 @@ function App() {
           <div id="bottom-inputs-div">
             {/* <input id="bottom-input-1" type="text" /> */}
             <select id="bottom-input-1" >
-              <option value="one" >tinyurl.com</option>
+              <option value="one" >localhost:5173</option>
             </select>
-            <input id="bottom-input-2" type="text" placeholder="Enter alias" />
+            <input id="bottom-input-2" type="text" onChange={(e) => { setusersOwnUrlId(e.target.value) }} placeholder="Enter alias" />
           </div>
 
+          {
+            generatedUrl != '' ? <div className='output-container'>
+              <p>Generated Shorten URL</p>
+              <div id="output-div">
+                <input type="text" readOnly={true} value={generatedUrl} onChange={(e) => { setoriginalUrl(e.target.value) }} placeholder="Enter long link here" />
+              </div>
+            </div> : <div></div>
+          }
+
           <div id="btn-div">
-            <button id="btn">Shorten URL</button>
+            <button id="btn" onClick={generateUrl}>Shorten URL</button>
           </div>
         </div>
       </div>
