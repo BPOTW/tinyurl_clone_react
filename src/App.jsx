@@ -15,7 +15,7 @@ function App() {
 
   async function generateUrl() {
   let urlId = usersOwnUrlId || generateUniqueId();
-  const finalUrl = `http://localhost:5173/${urlId}`;
+  const finalUrl = `https://tinyurl-clone-react.vercel.app/${urlId}`;
   setgeneratedUrl(finalUrl);
 
   const urlData = {
@@ -212,6 +212,7 @@ function App() {
           <div id="bottom-inputs-div">
             {/* <input id="bottom-input-1" type="text" /> */}
             <select id="bottom-input-1" >
+              <option value="one" >tinyurl-clone-react.vercel.app/</option>
               <option value="one" >localhost:5173</option>
             </select>
             <input id="bottom-input-2" type="text" onChange={(e) => { setusersOwnUrlId(e.target.value) }} placeholder="Enter alias" />
