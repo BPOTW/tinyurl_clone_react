@@ -8,7 +8,7 @@ const Redirection = () => {
   useEffect(() => {
     const getLinkData = async () => {
       try {
-        const res = await axios.get(`http://database-production-f40d.up.railway.app/${id}`);
+        const res = await axios.get(`https://database-production-f40d.up.railway.app/${id}`);
         const redirectUrl = await res.data[0].originalLink;
         console.log(redirectUrl);
 
