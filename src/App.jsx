@@ -26,7 +26,7 @@ function App() {
 
   try {
     console.log(urlData);
-    const res = await axios.post("http://database-production-f40d.up.railway.app/", urlData);
+    const res = await axios.post("https://database-production-f40d.up.railway.app/", urlData);
   } catch (error) {
     console.log(error);
   }
