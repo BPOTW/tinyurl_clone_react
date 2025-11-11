@@ -9,7 +9,7 @@ const Redirection = () => {
     const getLinkData = async () => {
       try {
         const res = await axios.get(`https://database-production-f40d.up.railway.app/${id}`);
-        console.log(res)
+        console.log(res.data)
         const redirectUrl = await res.data[0].originalLink;
         console.log(redirectUrl);
 
