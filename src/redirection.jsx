@@ -10,7 +10,7 @@ const Redirection = () => {
       try {
         const res = await axios.get(`https://database-production-f40d.up.railway.app/${id}`);
         console.log(res.data)
-        const redirectUrl = await res.data[0].originalLink;
+        const redirectUrl = await res.data.originalLink;
         console.log(redirectUrl);
 
         window.open(`${redirectUrl}`, "_self");
