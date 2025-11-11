@@ -12,7 +12,7 @@ const Redirection = () => {
         const redirectUrl = await res.data[0].originalLink;
         console.log(redirectUrl);
 
-        window.open(`https://${redirectUrl}`, "_self");
+        window.open(`${redirectUrl}`, "_self");
       } catch (err) {
         console.error("Error fetching:", err);
         // navigate("/error");
