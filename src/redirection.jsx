@@ -10,10 +10,10 @@ const Redirection = () => {
       try {
         const res = await axios.get(`https://database-production-f40d.up.railway.app/${id}`);
         console.log(res.data)
-        const redirectUrl = await res.data.originalLink;
+        const redirectUrl = res.data.originalLink;
         console.log(redirectUrl);
 
-        window.open(`${redirectUrl}`, "_self");
+        // window.open(`${redirectUrl}`, "_self");
       } catch (err) {
         console.error("Error fetching:", err);
         // navigate("/error");
