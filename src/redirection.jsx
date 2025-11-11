@@ -13,7 +13,7 @@ const Redirection = () => {
         const redirectUrl = res.data.originalLink;
         console.log(redirectUrl);
 
-        window.open(`https://${redirectUrl}`, "_self");
+        window.open(`${redirectUrl}`, "_self");
       } catch (err) {
         console.error("Error fetching:", err);
         // navigate("/error");
